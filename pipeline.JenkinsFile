@@ -1,0 +1,55 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('clone') {
+            steps {
+                echo 'Clonando projeto a ser analisado VAmPI'
+                
+                dir('project/VAmPI') {
+                    git(url: 'https://github.com/erev0s/VAmPI')
+                }
+            }
+        }
+        
+        stage('SAST') {
+            steps {
+                echo 'Executando análise SAST utilizando bandit'
+                
+                dir('project') {
+                    // || true para continuar a execução, pois o bandit retorna 1
+                    // devido aos erros que o projeto VAmPI possui
+                    sh 'bandit -r VAmPI -f json -o bandit_report.json || true'
+                }
+            }
+        }
+
+        stage('SCA') {
+            steps {
+                echo 'Executando análise SCA utilizando trivy'
+
+                dir('project') {
+                    sh 'trivy fs VAmPI --scanners vuln  -f json -o trivy_report.json';
+                }
+            }
+        }
+
+        stage('Secrets') {
+            steps {
+                echo 'Executando análise de Secrets utilizando GitLeaks'
+
+                dir('project') {
+                    // || true para continuar a execução, pois o gitleaks retorna 1
+                    // devido aos erros que o projeto VAmPI possui
+                    sh 'gitleaks dir VAmPI/ -f json -r gitleaks_report.json || true'
+                }
+            }
+        }
+    }
+
+    post {
+        always {
+            sh 'rm -rf project'
+        }
+    }
+}
