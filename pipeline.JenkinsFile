@@ -83,8 +83,8 @@ pipeline {
                             -F 'engagement_name=Jenkins' \
                             -F 'deduplication_on_engagement=true' \
                             -F "scan_date=$(date +'%Y-%m-%d')" \
-                            -F 'file=@gitleaks_report.json;type=application/json' \
-                            -F 'scan_type=Gitleaks Scan' \
+                            -F 'file=@trivy_report.json;type=application/json' \
+                            -F 'scan_type=Trivy Scan' \
                             -F 'branch_tag=master' \
                             -F 'source_code_management_uri=https://github.com/erev0s/VAmPI' \
                         '''
@@ -100,8 +100,8 @@ pipeline {
                             -F 'engagement_name=Jenkins' \
                             -F 'deduplication_on_engagement=true' \
                             -F "scan_date=$(date +'%Y-%m-%d')" \
-                            -F 'file=@trivy_report.json;type=application/json' \
-                            -F 'scan_type=Trivy Scan' \
+                            -F 'file=@gitleaks_report.json;type=application/json' \
+                            -F 'scan_type=Gitleaks Scan' \
                             -F 'branch_tag=master' \
                             -F 'source_code_management_uri=https://github.com/erev0s/VAmPI' \
                         '''
