@@ -33,7 +33,7 @@ pipeline {
                 echo 'Executando análise SCA utilizando trivy'
 
                 dir('project') {
-                    sh 'trivy fs VAmPI --scanners vuln  -f json -o trivy_report.json';
+                    sh 'trivy fs VAmPI --scanners vuln,misconfig,license  -f json -o trivy_report.json';
                 }
             }
         }
