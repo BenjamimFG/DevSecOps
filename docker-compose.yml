@@ -1,7 +1,7 @@
 services:
   nginx:
     build:
-      context: ./
+      context: ./defectdojo
       dockerfile: "Dockerfile.nginx-${DEFECT_DOJO_OS:-debian}"
     image: "defectdojo/defectdojo-nginx:${NGINX_VERSION:-latest}"
     depends_on:
@@ -22,7 +22,7 @@ services:
   
   uwsgi:
     build:
-      context: ./
+      context: ./defectdojo
       dockerfile: "Dockerfile.django-${DEFECT_DOJO_OS:-debian}"
       target: django
     image: "defectdojo/defectdojo-django:${DJANGO_VERSION:-latest}"
