@@ -12,5 +12,3 @@ RUN curl -sfL https://raw.githubusercontent.com/aquasecurity/trivy/main/contrib/
 RUN wget -qO gitleaks.tar.gz https://github.com/gitleaks/gitleaks/releases/download/v8.21.2/gitleaks_8.21.2_linux_x64.tar.gz
 RUN tar xf gitleaks.tar.gz -C /usr/local/bin gitleaks
 
-RUN jenkins-plugin-cli --plugins defectdojo:1.064.v65b_f28b_4a_fea_
-
