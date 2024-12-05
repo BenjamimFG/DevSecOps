@@ -30,7 +30,7 @@ docker compose up -d --build
 
 1. Acessar a interface web do jenkins na máquina local em http://localhost:8081 e realizar o passo a passo conforme exibido na interface para setup do usuário administrador.
 
-2. Criar uma pipeline e nas configurações da pipeline colar o script de acordo com o arquivo `pipeline.JenkinsFile` no repositório.
+2. Criar uma pipeline e nas configurações da pipeline colar o script de acordo com o arquivo `Jenkinsfile` no repositório.
 
 3. Criar uma credencial com o ID `DEFECT_DOJO_API_KEY` nas configurações do Jenkins local (http://localhost:8081/manage/credentials/store/system/domain/_/) do tipo `Secret text` o valor do campo `Secret` deve ser o valor da API KEY do defect dojo.
 
